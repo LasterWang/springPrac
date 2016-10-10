@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -31,9 +32,11 @@ public class LoggingAspect {
 		System.out.println("method before");
 		System.out.println("method:"+methodName+"--args:"+argList);
 	}
-	 
-	public void afterMethod()
+	
+	@After("execution(public int com.test.beans13.aop.ICalc.*(int, int))")
+	public void afterMethod(JoinPoint joinPoint)
 	{
-		System.out.println("method before");
+		String methodName=joinPoint.getSignature().getName();
+		System.out.println(" after method:"+methodName);
 	}
 }
