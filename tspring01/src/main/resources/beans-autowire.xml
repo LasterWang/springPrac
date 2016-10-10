@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+	">
+	<bean id="bike" class="com.test.beans04.autowire.Bike" p:brand="捷安特" p:speed="35"/>
+	<bean id="address2" class="com.test.beans04.autowire.Address" p:city="西安" p:street="长安南路"/>
+	<!-- atuowire :不够灵活，使用少
+		有byName 和 byType两个可选值
+	 -->
+	<bean id="user" class="com.test.beans04.autowire.User" autowire="byName">
+		<property name="name" value="lee"/>
+		<property name="address" ref="address2"/>
+	</bean>
+	
+</beans>
