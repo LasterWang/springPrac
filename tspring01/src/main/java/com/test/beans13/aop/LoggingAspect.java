@@ -31,7 +31,7 @@ public class LoggingAspect {
 		System.out.println("method before");
 		System.out.println("method:"+methodName+"--args:"+argList);
 	}
-	
+	 
 	public void afterMethod()
 	{
 		System.out.println("method before");
