@@ -1,1 +1,1 @@
-AOP--XML配置文件方式
+JDBC Teamplate 和 DAO 支持
