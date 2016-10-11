@@ -26,7 +26,7 @@
 		    <version>4.3.2.RELEASE</version>
 		</dependency>
 		
-		<!-- 支持 jdbcTemplate -->
+		<!-- 支持 jdbcTemplate，会主动将依赖的 spring-tx 模块导入 -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-jdbc</artifactId>
