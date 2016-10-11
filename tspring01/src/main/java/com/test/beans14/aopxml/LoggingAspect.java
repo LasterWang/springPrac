@@ -1,4 +1,4 @@
-package com.test.beans13.aop;
+package com.test.beans14.aopxml;
 
 
 import java.util.Arrays;
