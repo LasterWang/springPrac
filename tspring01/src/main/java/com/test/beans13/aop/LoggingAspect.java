@@ -33,7 +33,9 @@ public class LoggingAspect {
 		System.out.println("method:"+methodName+"--args:"+argList);
 	}
 	
-	@After("execution(public int com.test.beans13.aop.ICalc.*(int, int))")
+	//后置通知：目标方法执行后（无论是否发生异常）执行的通知。
+	//在后置通知总还不能访问目标方法的返回值
+	@After("execution(* com.test.beans13.aop.*.*(int, int))")
 	public void afterMethod(JoinPoint joinPoint)
 	{
 		String methodName=joinPoint.getSignature().getName();
