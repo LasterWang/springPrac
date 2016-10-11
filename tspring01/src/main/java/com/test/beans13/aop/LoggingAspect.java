@@ -73,7 +73,7 @@ public class LoggingAspect {
 	}
 	
 	//环绕通知：需要携带 ProceedingJoinPoint 类型的参数
-	//环绕通知相当于动态代理的全过程，ProceedingJoinPoint 类型的参数可以决定是否执行目标方法
+	//环绕通知相当于动态代理的全过程，ProceedingJoinPoint 类型的参数可以决定是否执行目标方法（如果不调用proceed方法则目标方法不能执行）,
 	//且环绕通知方法必须有返回值，返回值即为目标方法的返回值
 	@Around(value="execution(* com.test.beans13.aop.ICalc.add(..))")
 	public Object aroundMehtod(ProceedingJoinPoint pjd) throws Throwable
