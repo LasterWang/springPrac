@@ -1,8 +1,6 @@
 package com.test.beans14.aopxml;
 
-import org.springframework.stereotype.Component;
 
-@Component
 public class CalcImpl implements ICalc {
 
 	public int add(int i, int j) {

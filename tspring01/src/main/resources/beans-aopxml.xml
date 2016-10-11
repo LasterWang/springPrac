@@ -17,9 +17,29 @@
           http://www.springframework.org/schema/context/spring-context.xsd
           http://www.springframework.org/schema/aop
           http://www.springframework.org/schema/aop/spring-aop.xsd">
+          
+	<!-- 配置bean -->
+	<bean id="icalc" class="com.test.beans14.aopxml.CalcImpl"/>
 	
-	<!-- 配置自动扫描的包 -->
-	<context:component-scan base-package="com.test.beans13.aop" use-default-filters="true"/>
-	<!-- 启用 @aspectJ 支持 -->
-	<aop:aspectj-autoproxy/>
+	<!-- 配置切面的beans -->
+	<bean id="loggingAspect" class="com.test.beans14.aopxml.LoggingAspect"></bean>
+	
+	<bean id="valiAspect" class="com.test.beans14.aopxml.ValidateAspect"></bean>
+	
+	<!-- 配置切面 -->
+	<aop:config>
+		<!-- 配置切点表达式声明 -->
+		<aop:pointcut expression="execution(* com.test.beans14.aopxml.ICalc.*(int, int))" id="pcDeclare"/>
+		<!-- 配置切面和通知 -->
+		<aop:aspect ref="loggingAspect" order="2">
+			<aop:before method="beforeMethod" pointcut-ref="pcDeclare"/>
+			<aop:after method="afterMethod" pointcut-ref="pcDeclare"/>
+			<!-- throwing 值必须与loggingAspect类ExMethod方法中定义的名称一致 -->
+			<aop:after-throwing method="ExMethod" pointcut-ref="pcDeclare" throwing="ex"/>
+			<aop:after-returning method="afterReturningMethod" pointcut-ref="pcDeclare" returning="result"/>
+		</aop:aspect>
+		<aop:aspect ref="valiAspect" order="1">
+			<aop:before method="beforeMethod" pointcut-ref="pcDeclare"/>
+		</aop:aspect>
+	</aop:config>
 </beans>
