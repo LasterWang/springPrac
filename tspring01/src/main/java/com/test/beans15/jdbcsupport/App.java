@@ -28,6 +28,7 @@ public class App {
 	@Test
 	public void update()
 	{
+		int res=jdbcTemplate.update("update user set name='bbb' where id=1");
 		
 	}
 }
