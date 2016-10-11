@@ -34,7 +34,7 @@ public class LoggingAspect {
 	}
 	
 	//后置通知：目标方法执行后（无论是否发生异常）执行的通知。
-	//在后置通知总还不能访问目标方法的返回值
+	//在后置通知总还不能访问目标方法的返回值，需要使用返回值通知来解决
 	@After("execution(* com.test.beans13.aop.*.*(int, int))")
 	public void afterMethod(JoinPoint joinPoint)
 	{
