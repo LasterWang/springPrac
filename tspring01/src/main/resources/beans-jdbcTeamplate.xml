@@ -17,29 +17,19 @@
           http://www.springframework.org/schema/context/spring-context.xsd
           http://www.springframework.org/schema/aop
           http://www.springframework.org/schema/aop/spring-aop.xsd">
-          
-	<!-- 配置bean -->
-	<bean id="icalc" class="com.test.beans14.aopxml.CalcImpl"/>
+	<!-- 加载db.properties配置文件 -->
+	<context:property-placeholder location="classpath:db_jdbcTeamplate.properties"/>
 	
-	<!-- 配置切面的beans -->
-	<bean id="loggingAspect" class="com.test.beans14.aopxml.LoggingAspect"></bean>
-	
-	<bean id="valiAspect" class="com.test.beans14.aopxml.ValidateAspect"></bean>
-	
-	<!-- 配置切面 -->
-	<aop:config>
-		<!-- 配置切点表达式声明 -->
-		<aop:pointcut expression="execution(* com.test.beans14.aopxml.ICalc.*(int, int))" id="pcDeclare"/>
-		<!-- 配置切面和通知 -->
-		<aop:aspect ref="loggingAspect" order="2">
-			<aop:before method="beforeMethod" pointcut-ref="pcDeclare"/>
-			<aop:after method="afterMethod" pointcut-ref="pcDeclare"/>
-			<!-- throwing 值必须与loggingAspect类ExMethod方法中定义的名称一致 -->
-			<aop:after-throwing method="ExMethod" pointcut-ref="pcDeclare" throwing="ex"/>
-			<aop:after-returning method="afterReturningMethod" pointcut-ref="pcDeclare" returning="result"/>
-		</aop:aspect>
-		<aop:aspect ref="valiAspect" order="1">
-			<aop:before method="beforeMethod" pointcut-ref="pcDeclare"/>
-		</aop:aspect>
-	</aop:config>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+		<property name="initialPoolSize" value="${jdbc.initialPoolSize}"></property>
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
+	</bean>
+	<!-- 配置spring的jdbcTeamlate类 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 </beans>
