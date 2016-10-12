@@ -14,7 +14,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 public class App {
 	
@@ -123,18 +125,23 @@ public class App {
 		namedParameterJdbcTemplate.update(sql, paramMap);
 	}
 	
-	
+	/*
+	 * 使用具名参数，可以使用 update(String sql, SqlParameterSource paramSource) 方法进行更新
+	 * 1.sql语句中的参数名和类的属性一致
+	 * 2.使用 SqlParameterSource 的 BeanPropertySqlParameterSource 实现类作为参数
+	 */
 	@Test
 	public void testnamedParameterJdbcTemplate2()
 	{
-		String sql="insert into user(id,name,age,dept_id) values(:id,:name,:age,:dept_id)";
-		Map<String, Object> paramMap=new HashMap<String, Object>();
-		paramMap.put("id", 9);
-		paramMap.put("name", "lisa");
-		paramMap.put("age", 29);
-		paramMap.put("dept_id", 2);
+		String sql="insert into user(id,name,age) values(:id,:name,:age)";
+		User user=new User();
+		user.setId(10);
+		user.setName("linda");
+		user.setAge(30);
 		
-		namedParameterJdbcTemplate.update(sql, paramMap);
+		SqlParameterSource parameterSource=new BeanPropertySqlParameterSource(user);
+		
+		namedParameterJdbcTemplate.update(sql, parameterSource);
 	}
 	
 }
