@@ -79,4 +79,12 @@ public class App {
 		int count=jdbcTemplate.queryForObject(sql, Integer.class);
 		System.out.println(count);
 	}
+	
+	//测试项目中使用的 UserDao
+	@Test
+	public void userDaoUse()
+	{
+		UserDao ud=ctx.getBean(UserDao.class);
+		System.out.println(ud.get(1));
+	}
 }
