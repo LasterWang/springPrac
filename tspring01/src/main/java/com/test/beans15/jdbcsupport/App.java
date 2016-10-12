@@ -2,7 +2,9 @@ package com.test.beans15.jdbcsupport;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -12,15 +14,22 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 public class App {
 	
 	private ApplicationContext ctx=null;
 	private JdbcTemplate jdbcTemplate=null;
+	private UserDao userDao;
+	private DeptDao deptDao;
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
 	{
 		ctx=new ClassPathXmlApplicationContext("beans-jdbcTeamplate.xml");
 		jdbcTemplate=(JdbcTemplate) ctx.getBean("jdbcTemplate");
+		userDao=ctx.getBean(UserDao.class);
+		deptDao=ctx.getBean(DeptDao.class);
+		namedParameterJdbcTemplate=ctx.getBean(NamedParameterJdbcTemplate.class);
 	}
 	//测试连接是否成功
 	@Test
@@ -84,7 +93,48 @@ public class App {
 	@Test
 	public void userDaoUse()
 	{
-		UserDao ud=ctx.getBean(UserDao.class);
-		System.out.println(ud.get(1));
+		
+		System.out.println(userDao.get(1));
 	}
+	
+	//测试继承JdbcDaoSupport 的类方法调用
+	@Test
+	public void deptDao()
+	{
+		System.out.println(deptDao.get(1));
+	}
+	
+	//测试namedParameterJdbcTemplate
+	/**
+	 * 可以给参数取名
+	 * 1.好处：编码不易出错，易于维护。
+	 * 2.缺点：编码比较麻烦。
+	 */
+	@Test
+	public void testnamedParameterJdbcTemplate()
+	{
+		String sql="insert into user(id,name,age,dept_id) values(:id,:name,:age,:dept_id)";
+		Map<String, Object> paramMap=new HashMap<String, Object>();
+		paramMap.put("id", 9);
+		paramMap.put("name", "lisa");
+		paramMap.put("age", 29);
+		paramMap.put("dept_id", 2);
+		
+		namedParameterJdbcTemplate.update(sql, paramMap);
+	}
+	
+	
+	@Test
+	public void testnamedParameterJdbcTemplate2()
+	{
+		String sql="insert into user(id,name,age,dept_id) values(:id,:name,:age,:dept_id)";
+		Map<String, Object> paramMap=new HashMap<String, Object>();
+		paramMap.put("id", 9);
+		paramMap.put("name", "lisa");
+		paramMap.put("age", 29);
+		paramMap.put("dept_id", 2);
+		
+		namedParameterJdbcTemplate.update(sql, paramMap);
+	}
+	
 }
