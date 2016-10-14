@@ -12,6 +12,9 @@ public class CashierImpl implements Cashier {
 	@Autowired
 	private BookShopService bookShopService;
 	
+	//默认情况下，Spring的声明式事务对所有的运行时异常进行回滚，也可以通过对应的属性来进行设置，参考BookShopServiceImpl中注释
+	
+	
 	@Transactional
 	public void checkout(String username, List<String> isbns) {
 		for (String isbn : isbns) {
