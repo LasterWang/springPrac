@@ -1,4 +1,4 @@
-一、Spring事务
+一、Spring事务（注解声明式事务）
 1.在Spring配置文件中配置事务管理器，重点是要指明让它管理的数据源。
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
