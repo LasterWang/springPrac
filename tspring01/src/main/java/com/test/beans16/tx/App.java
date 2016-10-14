@@ -32,6 +32,8 @@ public class App {
 	}
 	
 	//≤‚ ‘π∫ È
+	
+	@Test
 	public void testPurchaseBook()
 	{
 		bookShopService.purchase("AA", "1001");
