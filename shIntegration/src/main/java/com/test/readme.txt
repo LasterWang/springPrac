@@ -5,5 +5,6 @@
 
 二、整合步骤
 1.加入hibernate
+①.导入hibernate jar 支持
 2.加入spring
 3.整合
