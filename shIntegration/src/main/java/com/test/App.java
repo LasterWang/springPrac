@@ -1,21 +1,21 @@
 package com.test;
 
+import javax.sql.DataSource;
+
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
 
-
-@Component
 public class App 
 {
-	public void test()
+	private ApplicationContext ctx=null;
 	{
-		System.out.println("test...");
+		ctx=new ClassPathXmlApplicationContext("beans.xml");
 	}
-    public static void main( String[] args )
+	@Test
+    public void test( )
     {
-    	ApplicationContext ctx=new ClassPathXmlApplicationContext("beans.xml");
-    	App u=ctx.getBean(App.class);
-		u.test();
+    	DataSource u=ctx.getBean(DataSource.class);
+		System.out.println("sss"+u);
     }
 }

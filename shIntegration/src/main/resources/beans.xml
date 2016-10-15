@@ -21,9 +21,11 @@
 	<!-- 配置自动扫描的包 -->
 	<context:component-scan base-package="com.test" use-default-filters="true"/>
 	
+	<!-- 1.配置数据源 -->
+	
 	<!-- 加载db.properties配置文件 -->
 	<context:property-placeholder location="classpath:db.properties"/>
-	
+	<!-- 配置数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="user" value="${jdbc.user}"></property>
 		<property name="password" value="${jdbc.password}"></property>
@@ -32,22 +34,36 @@
 		<property name="initialPoolSize" value="${jdbc.initialPoolSize}"></property>
 		<property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
 	</bean>
-	<!-- 配置spring的jdbcTeamlate类 -->
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource" ref="dataSource" />
+	<!-- 2.配置 Hibernate 的 SessionFactory 实例
+			ps. 通过Spring 提供的LocalSessionFactoryBean进行配置
+	 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<!-- 配置数据源 -->
+		<property name="dataSource" ref="dataSource"/>
+		<!-- 配置hibernate 配置文件位置 -->
+		<property name="configLocations" value="classpath:hibernate.cfg.xml"/>
+		<!-- 配置hibernate 映射文件位置，可以使用通配符 -->
+		<property name="mappingLocations" value="classpath:com/test/bean/*.hbm.xml"/>
 	</bean>
 	
-	<!-- 配置spring的jdbcTeamlate类 -->
-	<bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-		<constructor-arg ref="dataSource"></constructor-arg>
-	</bean>
-	
+	<!-- 3.配置 Spring 的声明式事务 -->
 	
 	<!-- 配置事务管理器 -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	
+	<!-- 配置事务属性 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+	<!-- 配置事务切入点，并把切点和事务属性关联起来-->
+	<aop:config>
+		<aop:pointcut id="txPointCut" expression="execution(* com.test.service.*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+	</aop:config>
 	<!-- 启用事务管理器 -->
 	<tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
 	
