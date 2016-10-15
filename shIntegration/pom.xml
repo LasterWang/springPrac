@@ -43,7 +43,7 @@
 		    <artifactId>spring-jdbc</artifactId>
 		    <version>4.3.2.RELEASE</version>
 		</dependency>
-		 
+		 <!-- 数据库配置 -->
 		<dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
