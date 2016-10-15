@@ -1,13 +1,24 @@
 package com.test;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.test.beans01.basic.User;
+
 /**
  * Hello world!
  *
  */
 public class App 
 {
+	public void test()
+	{
+		System.out.println("test...");
+	}
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+    	ApplicationContext ctx=new ClassPathXmlApplicationContext("beans.xml");
+    	App u=ctx.getBean(App.class);
+		u.sayHi();
     }
 }
