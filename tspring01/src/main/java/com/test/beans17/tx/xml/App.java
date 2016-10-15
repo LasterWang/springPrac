@@ -6,33 +6,18 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.test.beans17.tx.xml.service.BookShopService;
+import com.test.beans17.tx.xml.service.Cashier;
+
 public class App {
 	private ApplicationContext ctx=null;
-	private BookShopDao bookShopDao=null;
 	private BookShopService bookShopService=null;
 	private Cashier cashier=null;
 	
 	{
 		ctx=new ClassPathXmlApplicationContext("beans-tx-xml.xml");
-		bookShopDao=ctx.getBean(BookShopDao.class);
 		bookShopService=ctx.getBean(BookShopService.class);
 		cashier=ctx.getBean(Cashier.class);
-	}
-	
-	@Test
-	public void findBook(){
-		System.out.println(bookShopDao.findBookPriceByIsbn("1001"));
-	}
-	
-	@Test
-	public void updateBookStock()
-	{
-		bookShopDao.updateBookStock("1001");
-	}
-	
-	@Test
-	public void updateUserAccount(){
-		bookShopDao.updateUserAccount("AA", 50);
 	}
 	
 	//≤‚ ‘ ¬ŒÒ--π∫ È

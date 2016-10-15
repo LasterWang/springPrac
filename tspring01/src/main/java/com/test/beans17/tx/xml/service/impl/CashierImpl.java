@@ -1,6 +1,9 @@
-package com.test.beans17.tx.xml;
+package com.test.beans17.tx.xml.service.impl;
 
 import java.util.List;
+
+import com.test.beans17.tx.xml.service.BookShopService;
+import com.test.beans17.tx.xml.service.Cashier;
 
 public class CashierImpl implements Cashier {
 

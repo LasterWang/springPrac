@@ -6,8 +6,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 public class App {
 	private ApplicationContext ctx=null;
 	private BookShopDao bookShopDao=null;
@@ -15,7 +13,7 @@ public class App {
 	private Cashier cashier=null;
 	
 	{
-		ctx=new ClassPathXmlApplicationContext("beans-tx.xml");
+		ctx=new ClassPathXmlApplicationContext("beans-tx-xml.xml");
 		bookShopDao=ctx.getBean(BookShopDao.class);
 		bookShopService=ctx.getBean(BookShopService.class);
 		cashier=ctx.getBean(Cashier.class);

@@ -1,5 +1,7 @@
-package com.test.beans17.tx.xml;
+package com.test.beans17.tx.xml.service.impl;
 
+import com.test.beans17.tx.xml.BookShopDao;
+import com.test.beans17.tx.xml.service.BookShopService;
 
 public class BookShopServiceImpl implements BookShopService {
 	

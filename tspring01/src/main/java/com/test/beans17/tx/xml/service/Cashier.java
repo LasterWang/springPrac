@@ -1,4 +1,4 @@
-package com.test.beans17.tx.xml;
+package com.test.beans17.tx.xml.service;
 
 import java.util.List;
 
