@@ -1,0 +1,1 @@
+通过spring创建基本bean

@@ -1,0 +1,1 @@
+bean的自动装配  byName byType

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation=" 
+          http://www.springframework.org/schema/jee
+          http://www.springframework.org/schema/jee/spring-jee.xsd
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx.xsd
+          http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/aop
+          http://www.springframework.org/schema/aop/spring-aop.xsd">
+          
+	<!-- 配置bean -->
+	<bean id="icalc" class="com.test.beans14.aopxml.CalcImpl"/>
+	
+	<!-- 配置切面的beans -->
+	<bean id="loggingAspect" class="com.test.beans14.aopxml.LoggingAspect"></bean>
+	
+	<bean id="valiAspect" class="com.test.beans14.aopxml.ValidateAspect"></bean>
+	
+	<!-- 配置切面 -->
+	<aop:config>
+		<!-- 配置切点表达式声明 -->
+		<aop:pointcut expression="execution(* com.test.beans14.aopxml.ICalc.*(int, int))" id="pcDeclare"/>
+		<!-- 配置切面和通知 -->
+		<aop:aspect ref="loggingAspect" order="2">
+			<aop:before method="beforeMethod" pointcut-ref="pcDeclare"/>
+			<aop:after method="afterMethod" pointcut-ref="pcDeclare"/>
+			<!-- throwing 值必须与loggingAspect类ExMethod方法中定义的名称一致 -->
+			<aop:after-throwing method="ExMethod" pointcut-ref="pcDeclare" throwing="ex"/>
+			<aop:after-returning method="afterReturningMethod" pointcut-ref="pcDeclare" returning="result"/>
+		</aop:aspect>
+		<aop:aspect ref="valiAspect" order="1">
+			<aop:before method="beforeMethod" pointcut-ref="pcDeclare"/>
+		</aop:aspect>
+	</aop:config>
+</beans>

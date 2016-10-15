@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+	">
+	<bean id="user" class="com.test.beans01.basic.User">
+		<property name="name" value="spring"></property>
+	</bean>
+	
+	
+	<bean id="bike1" class="com.test.beans02.property.Bike">
+		<constructor-arg value="凤凰" index="0"/>
+		<constructor-arg value="24" index="1"/>
+	</bean>
+	<bean id="bike2" class="com.test.beans02.property.Bike">
+		<property name="brand" value="永久"/>
+		<property name="speed" value="27"/>
+	</bean>
+	<!-- 配置list (内部)-->
+	<bean id="user2" class="com.test.beans02.property.User">
+		<property name="name" value="summer"></property>
+		<property name="bikeList">
+			<list>
+				<ref bean="bike1"/>
+				<ref bean="bike2"/>
+				<bean class="com.test.beans02.property.Bike">
+					<property name="brand" value="捷安特"/>
+					<property name="speed" value="30"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="bike3" class="com.test.beans03.collection.Bike">
+		<constructor-arg value="凤凰" index="0"/>
+		<constructor-arg value="24" index="1"/>
+	</bean>
+	<bean id="bike4" class="com.test.beans03.collection.Bike">
+		<property name="brand" value="永久"/>
+		<property name="speed" value="27"/>
+	</bean>
+	<!-- 配置map （内部）-->
+	<bean id="user3" class="com.test.beans03.collection.User">
+		<property name="name" value="autum"/>
+		<property name="bikeMap">
+			<map>
+				<entry key="fh" value-ref="bike3"></entry>
+				<entry key="yj" value-ref="bike4"></entry>
+			</map>
+		</property>
+	</bean>
+	
+	<!-- 独立配置集合对象 -->
+	<util:map id="bikeMap">
+		<entry key="one" value-ref="bike3"/>
+		<entry key="two" value-ref="bike4"/>
+	</util:map>
+	
+	<!-- 独立配置集合对象 -->
+	<util:list id="bikeList">
+		<ref bean="bike3"/>
+		<ref bean="bike4"/>
+	</util:list>
+	
+	<bean id="user4" class="com.test.beans03.collection.User" p:name="lisa">
+		<property name="bikeMap" ref="bikeMap"/>
+	</bean>
+	<!-- 配置properties （内部）-->
+	<bean id="ds" class="com.test.beans03.collection.DataSource">
+		<property name="properties">
+			<props>
+				<prop key="user">root</prop>
+				<prop key="psw">admin2015</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+	
+</beans>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+	">
+	<!-- 配置之间的继承：形成父bean和子bean的关系  
+		parent 属性，继承时不会继承abstract属性
+		
+		也可以将父bean设置为纯粹的模板（采用 abstract 属性），纯粹模板的父bean不能实例化；
+		如果一个bean既没有指定class属性值，也没有继承父bean 则必须为模板。
+	-->
+	<bean id="addressBj" class="com.test.beans05.relation.Address" p:country="中国" p:city="北京" p:street="长安街"/>
+	<bean id="addressXa" parent="addressBj" p:city="西安" p:street="长安南路"/>
+	
+	<!-- depends-on 属性：指定本bean依赖的bean，被依赖的bean -->
+	<bean id="user" class="com.test.beans05.relation.User" p:name="lesi" depends-on="addressXa">
+	<!-- 	<property name="address" ref="addressXa"/> -->
+	</bean>
+</beans>

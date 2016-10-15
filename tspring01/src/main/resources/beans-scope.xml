@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+	">
+	<!-- scope 属性，约定bean的作用域，
+		singleton：单例的bean，在容器启动时创建对象，后面的引用都使用同一个对象，
+		prototype:原型bean 每次调用时创建新bean对象-->
+	<bean id="bike" class="com.test.beans06.scope.Bike" p:brand="凤凰" p:speed="30" scope="prototype"/>
+</beans>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation=" 
+          http://www.springframework.org/schema/jee 
+          http://www.springframework.org/schema/jee/spring-jee.xsd
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd 
+          http://www.springframework.org/schema/tx 
+          http://www.springframework.org/schema/tx/spring-tx.xsd
+          http://www.springframework.org/schema/context 
+          http://www.springframework.org/schema/context/spring-context.xsd 
+          http://www.springframework.org/schema/aop 
+          http://www.springframework.org/schema/aop/spring-aop.xsd"
+	>
+	<!-- 通过静态工厂方法配置bean。
+		ps.不是配置静态方法所在类的实例，而是配置静态工厂生产bean的实例。
+		
+		class:指向静态工厂方法所在类的全类名
+		factory-method:静态工厂方法名
+		constructor-arg:如果工厂方法需要传参，则使用本标记
+	 -->
+	<bean id="bike01" class="com.test.beans09.factory.StaticBikeFactory" factory-method="getBike">
+		<!-- 传递工厂方法参数 -->
+		<constructor-arg value="FH"></constructor-arg>
+	</bean>
+	
+	<!-- 配置bean工厂实例-->
+	<bean id="instanceFactory" class="com.test.beans09.factory.InstanceBikeFactory"/>
+	
+	<!-- 通过工厂实例的工厂方法来配置bean 
+	
+		factory-bean:指向实例工厂的实例bean
+		factory-method:工厂方法名
+		constructor-arg:如果工厂方法需要传参，则使用本标记
+	-->
+	<bean id="bike02" factory-bean="instanceFactory" factory-method="getBike">
+		<constructor-arg value="YJ"/>
+	</bean>
+</beans>

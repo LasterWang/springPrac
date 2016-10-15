@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation=" 
+          http://www.springframework.org/schema/jee
+          http://www.springframework.org/schema/jee/spring-jee.xsd
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx.xsd
+          http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/aop
+          http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<!-- 指定ioc容器扫描的包 
+			base-package:表示要扫描的基准包，及其下的所有包
+			resource-pattern:指定要扫描的资源
+			use-default-filters:是否使用默认的filter，默认filter是指由base-package指定的范围。如果值为false 则表示只使用内部标签包含filter
+			
+			<context:component-scan base-package="com.test.beans11.anonation" resource-pattern="repository/*" />
+	-->
+	<context:component-scan base-package="com.test.beans11.anonation" use-default-filters="true">
+		<!--指定要排除哪些组件
+		 type:要排除的类型，包括：annotation：注解/assignable：指定，这里是排除了注解  Service
+		 expression：要编写的表达式
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+		 -->
+		 
+		 <!-- 指定要包含哪些组件
+		 <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+		 -->
+		 
+		 <!-- 通过 type="assignable" 指定要排除哪些指定的类及其实现类 
+		 <context:exclude-filter type="assignable" expression="com.test.beans11.anonation.repository.UserRepository"/>
+		 -->
+		 
+		  <!-- 通过 type="assignable" 指定要包含哪些指定的类及其实现类 
+		  <context:include-filter type="assignable" expression="com.test.beans11.anonation.repository.UserRepository"/>
+		  -->
+	</context:component-scan>
+	
+</beans>
