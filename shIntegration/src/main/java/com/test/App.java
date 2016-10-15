@@ -2,13 +2,10 @@ package com.test;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
-import com.test.beans01.basic.User;
 
-/**
- * Hello world!
- *
- */
+@Component
 public class App 
 {
 	public void test()
@@ -19,6 +16,6 @@ public class App
     {
     	ApplicationContext ctx=new ClassPathXmlApplicationContext("beans.xml");
     	App u=ctx.getBean(App.class);
-		u.sayHi();
+		u.test();
     }
 }
