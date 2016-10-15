@@ -17,5 +17,5 @@
 2.加入spring
 ①.导入spring jar 支持
 	如pom中注释
-
+②.在spring配置文件中配置hibernate 的 sessionFactory 和 声明式事务
 3.整合
