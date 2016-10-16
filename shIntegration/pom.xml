@@ -15,7 +15,12 @@
   </properties>
 
    <dependencies>
-		
+		<!-- Hibernate -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>4.2.4.Final</version>
+		</dependency>
 		<!-- 导入spring基本 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -69,13 +74,6 @@
 		    <groupId>c3p0</groupId>
 		    <artifactId>c3p0</artifactId>
 		    <version>0.9.1.2</version>
-		</dependency>
-		
-		<!-- Hibernate -->
-		<dependency>
-		    <groupId>org.hibernate</groupId>
-		    <artifactId>hibernate-core</artifactId>
-		    <version>4.2.4.Final</version>
 		</dependency>
 		
 		<dependency>

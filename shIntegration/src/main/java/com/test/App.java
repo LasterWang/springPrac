@@ -1,7 +1,5 @@
 package com.test;
 
-import javax.sql.DataSource;
-
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -10,25 +8,22 @@ import com.test.service.BookShopService;
 
 public class App 
 {
-	private static ApplicationContext ctx=null;
-	private static BookShopService bookShopService=null;
-	static
+	private ApplicationContext ctx=null;
+	private BookShopService bookShopService=null;
 	{
 		ctx=new ClassPathXmlApplicationContext("beans.xml");
 		bookShopService=ctx.getBean(BookShopService.class);
 	}
-	public static void testBookShopService()
+	
+	@Test
+	public void testpu()
 	{
-		bookShopService.purchase("AA", "1001");
+//		bookShopService.purchase("AA", "1001");
+		System.out.println("ss");
 	}
 	
-    public static void test( )
-    {
-    	DataSource u=ctx.getBean(DataSource.class);
-		System.out.println("sss"+u);
-    }
-	
-	public static void main(String[] args) {
-		App.test();
+	@Test
+	public void sxx(){
+		System.out.println("ss");
 	}
 }

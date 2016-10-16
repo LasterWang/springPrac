@@ -40,7 +40,7 @@ public class BookShopDaoImpl implements BookShopDao {
 	public void updateUserAccount(String username, int price) {
 		//验证余额是否足够
 		String hql="select a.balance from Account a where a.username=?";
-		int balance=(Integer) getSession().createQuery(hql).setInteger(0, price).uniqueResult();
+		int balance=(Integer) getSession().createQuery(hql).setString(0, username).uniqueResult();
 		if (balance<price) {
 			throw new UserAccountException("余额不足");
 		}
