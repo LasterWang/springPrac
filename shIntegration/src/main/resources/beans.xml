@@ -56,6 +56,7 @@
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true"/>
+			<tx:method name="purchase" propagation="REQUIRES_NEW"/>
 			<tx:method name="*"/>
 		</tx:attributes>
 	</tx:advice>
@@ -64,7 +65,5 @@
 		<aop:pointcut id="txPointCut" expression="execution(* com.test.service.*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
 	</aop:config>
-	<!-- 启用事务管理器 -->
-	<tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
 	
 </beans>

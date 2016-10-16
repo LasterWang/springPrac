@@ -1,4 +1,4 @@
-一、spring 整合 Hibernate
+一、spring 整合 Hibernate (使用hibernate 配置文件的方式)
 主要是两方面
 1、由 Spring IOC 容器来管理 Hibernate 的 SessionFactory
 2、让 Hibernate 能够使用 spring 的声明式事务
@@ -19,3 +19,4 @@
 	如pom中注释
 ②.在spring配置文件中配置hibernate 的 sessionFactory 和 声明式事务
 3.整合
+	spring hibernate 事务的流程 的注释在 BookShopServiceImpl 中
