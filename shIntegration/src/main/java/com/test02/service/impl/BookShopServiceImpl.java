@@ -3,8 +3,8 @@ package com.test02.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.test.service.BookShopDao;
-import com.test.service.BookShopService;
+import com.test02.service.BookShopDao;
+import com.test02.service.BookShopService;
 
 @Service
 public class BookShopServiceImpl implements BookShopService {

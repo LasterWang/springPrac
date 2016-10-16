@@ -5,7 +5,7 @@
      >  
 <!-- 映射文件开始 -->    
 <hibernate-mapping>
-	<class name="com.test.bean.Book" table="SH_book">
+	<class name="com.test02.bean.Book" table="SH_book">
 		<id name="id" type="java.lang.Integer">
 			<column name="id"/>
 			<generator class="native"/>

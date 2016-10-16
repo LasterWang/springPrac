@@ -6,8 +6,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.test.service.BookShopService;
-import com.test.service.Cashier;
+import com.test02.service.BookShopService;
+import com.test02.service.Cashier;
 
 public class App 
 {

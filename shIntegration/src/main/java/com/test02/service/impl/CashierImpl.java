@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.test.service.BookShopService;
-import com.test.service.Cashier;
+import com.test02.service.BookShopService;
+import com.test02.service.Cashier;
 @Service
 public class CashierImpl implements Cashier{
 	@Autowired

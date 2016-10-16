@@ -11,7 +11,7 @@
 		    <artifactId>hibernate-core</artifactId>
 		    <version>4.2.4.Final</version>
 		</dependency>
-②.添加hibernate配置文件：hibernate.cfg.xml
+②.在spring配置文件中配置hibernate
 	主要包括：数据源、sessionFactory、基本属性（方言、sql显示及格式化、生成数据表策略以及二级缓存等）
 ③.创建持久化类，及其映射文件
 2.加入spring

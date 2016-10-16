@@ -40,8 +40,15 @@
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<!-- 配置数据源 -->
 		<property name="dataSource" ref="dataSource"/>
-		<!-- 配置hibernate 配置文件位置 -->
-		<property name="configLocations" value="classpath:hibernate.cfg.xml"/>
+		<!-- 使用hibarnateProperties属性来配置hibernate 原生的属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
 		<!-- 配置hibernate 映射文件位置，可以使用通配符 -->
 		<property name="mappingLocations" value="classpath:com/test/bean/*.hbm.xml"/>
 	</bean>

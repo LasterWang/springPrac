@@ -6,9 +6,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.test.exception.BookStockException;
-import com.test.exception.UserAccountException;
-import com.test.service.BookShopDao;
+import com.test02.exception.BookStockException;
+import com.test02.exception.UserAccountException;
+import com.test02.service.BookShopDao;
 @Repository
 public class BookShopDaoImpl implements BookShopDao {
 	@Autowired
