@@ -41,12 +41,12 @@
 		    <artifactId>spring-aspects</artifactId>
 		    <version>4.3.2.RELEASE</version>
 		</dependency>
-		<!-- Spring web 支持 -->
-		<!-- <dependency>
+		<!-- Spring web 支持 这个项目中暂时用不上 -->
+		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-webmvc</artifactId>
 		    <version>4.3.2.RELEASE</version>
-		</dependency> -->
+		</dependency>
 		
 		<!-- 支持 jdbcTemplate，会主动将依赖的 spring-tx 模块导入 -->
 		<dependency>
